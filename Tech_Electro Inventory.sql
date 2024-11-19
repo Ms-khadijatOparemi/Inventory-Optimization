@@ -2,7 +2,7 @@ This is still a work in process
 
 use tech_electro;
 
-#Create a database/schema - In MySql a Database is the same as a schema
+#Create a database/schema - In MySql, a Database is the same as a schema
 # Load Data
 
 -- KNOW THE DATA
@@ -11,7 +11,7 @@ SELECT * FROM Inventory_data LIMIT 5;
 SELECT * FROM Product_Information LIMIT 5;
 SELECT * FROM sales_data LIMIT 5;
 
--- UNDERSTAND THE DATA STRUCTURE ( SHOW, DESCRIBE and DESC are functions that can be used to  understant the structure od a dataset)
+-- UNDERSTAND THE DATA STRUCTURE ( SHOW, DESCRIBE and DESC are functions that can be used to  understand the structure of a dataset)
 SHOW COLUMNS FROM external_factors;
 DESCRIBE product_information;
 DESC sales_data;
@@ -71,7 +71,7 @@ CHANGE COLUMN `Product Category` product_category TEXT;
 
 
  # C) sales_data table
-  -- ProductID INT NOT NULL, SalesDate Date, InventoryQuantity INT , ProductCost DECIMAL(5,2)
+  -- ProductID INT NOT NULL, SalesDate Date, InventoryQuantity INT, ProductCost DECIMAL(5,2)
 ALTER TABLE sales_data
 CHANGE COLUMN `Product ID` product_id INT NOT NULL;
 
@@ -95,7 +95,7 @@ ALTER TABLE sales_data
 CHANGE COLUMN `Inventory Quantity`  inventory_quantity INT
 
 
-# 2 MISSING VALUES - Identify missing value using 'IS NULL' function
+# 2 MISSING VALUES - Identify missing values using 'IS NULL' function
 	# A) external_factors table
 ;
 SELECT
@@ -175,7 +175,7 @@ SELECT
  LEFT JOIN external_factors e 
  ON sp.Sales_Date = e.Sales_Date;
           
-##### DESCRIPTIVE ANALYSIS -Avg Sales, Mediun Stock Level, Product Performance, Top selling and Least Selling Products, Frequency of Sold Out for High Demand,Seasonality pattern
+##### DESCRIPTIVE ANALYSIS -Avg Sales, Medium Stock Level, Product Performance, Top selling and Least Selling Products, Frequency of Sold Out for High Demand, Seasonality pattern
 --- BASIC STATISTICS
 
 ---  Average Sales (calculated as the product of "Inventory Quantity" and "Product Cost")
@@ -186,7 +186,7 @@ GROUP BY product_id
 ORDER BY avg_sales DESC;
 
 
---- MEDIAN STOCK LEVEL (i.e "inventory_quantity")
+--MEDIAN STOCK LEVEL (i.e "inventory_quantity")
 
 SELECT product_id,
 AVG(inventory_quantity) as median_stock
@@ -207,7 +207,7 @@ FROM invt_data
 GROUP BY product_id
 ORDER BY total_sales DESC;
 
---- Identify high-demand product based on average sales
+--- Identify high-demand products based on average sales
 WITH HighDemandProducts AS (
 SELECT product_id, AVG(inventory_quantity) as avg_sales
  FROM ivnt_data
@@ -217,7 +217,7 @@ SELECT AVG(inventory_quantity) * 0.95 FROM sales_data
 	)
 )
 
----  Calculate stockout frequency  high_demand products
+---  Calculate stockout frequency  of high_demand products
 
 SELECT s.product_id,
 COUNT(*) as stockout_frequency
@@ -227,9 +227,9 @@ AND s.inventory_quantity = 0
 GROUP BY s.product_id;
 
 --- INFLUENCE OF EXTERNAL FACTORS
---- GDP : The overall economic health and growth of a nation. Higher GDP lleads to more more customers spending which leads to higher sales. 
+--- GDP: The overall economic health and growth of a nation. Higher GDP leads to more more customers spending which leads to higher sales. 
 ---        A lower GDP signifies an economic downturn
---- INFLATION RATE : It is the rate at which the general level of prices of goods are rising and purchasing power is decreasing which might 
+--- INFLATION RATE: It is the rate at which the general level of prices of goods are rising and purchasing power is decreasing which might 
 --- 					deter customers from purchasing non-essential items leading to reduced sales
 
 --- GDP
