@@ -1,3 +1,5 @@
+This is still a work in process
+
 use tech_electro;
 
 #Create a database/schema - In MySql a Database is the same as a schema
@@ -14,7 +16,7 @@ SHOW COLUMNS FROM external_factors;
 DESCRIBE product_information;
 DESC sales_data;
 -- Some variables are in the wrong data, we need to change them to the appropriate data type before we can do our analysis.
--- Sales Date is in the wrong data type
+-- The Sales Date is in the wrong data type
 
 -- CLEAN DATA 
 # 1)  DATA TYPE- Change columns to the right data type
